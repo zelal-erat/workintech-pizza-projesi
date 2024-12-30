@@ -31,7 +31,7 @@ const OrderForm = ({ onOrderSubmit }) => {
     sucuk: 5,
     biber: 5,
     kabak: 5,
-    'kanada jambonu': 5,
+    'salam': 5,
     domates: 5,
     jalepone: 5,
   };
@@ -114,12 +114,11 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
-      <h1>Teknolojik Yemekler</h1>
 
       {/* İsim Girişi (Card) */}
       <Card className="name-input">
         <CardBody>
-          <label>
+          <label >
             İsim:
             <input
               type="text"
@@ -128,6 +127,8 @@ const OrderForm = ({ onOrderSubmit }) => {
               required
               minLength={3}
               placeholder="İsminizi girin"
+              data-cy="ad-input"
+
             />
           </label>
         </CardBody>
@@ -201,7 +202,7 @@ const OrderForm = ({ onOrderSubmit }) => {
           <label>Ekstra Malzemeler (4-10 adet):</label>
           {[ 
             'pepperoni', 'tavuk izgara', 'misir', 'sarimsak', 'ananas', 'sosis', 
-            'sogan', 'sucuk', 'biber', 'kabak', 'kanada jambonu', 'domates', 'jalepone'
+            'sogan', 'sucuk', 'biber', 'kabak', 'salam', 'domates', 'jalepone'
           ].map((item) => (
             <div key={item}>
               <input

@@ -1,9 +1,11 @@
-import React from "react"; 
+import React from "react";
 import './header.css'
 export default function Header (){
     return(
         <header className="header">
-       <h1>Teknolojik Yemekler</h1>
+        <div className="logo">
+          <img src="./images/iteration-1-images/logo.svg" alt="Logo" />
+        </div>
       </header>
     )
 }
