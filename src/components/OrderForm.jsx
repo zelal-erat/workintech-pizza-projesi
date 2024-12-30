@@ -1,19 +1,25 @@
+// OrderForm.js
 import React, { useState } from 'react';
 import { Form, Card, CardBody } from 'reactstrap';
+import axios from 'axios';
 import './OrderForm.css';
 
-const OrderForm = () => {
+const OrderForm = ({ onOrderSubmit }) => {
+  const [name, setName] = useState('');
   const [pizzaSize, setPizzaSize] = useState('medium');
   const [dough, setDough] = useState('normal');
   const [extras, setExtras] = useState([]);
   const [quantity, setQuantity] = useState(1);
+  const [note, setNote] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const pizzaPrice = 85.50; // Temel pizza fiyatı
   const sizePrices = { small: 8, medium: 10, large: 12 };
   const doughPrices = { normal: 0, thick: 2 };
   const extraPrices = {
-    cheese: 5, 
-    olives: 5, 
+    cheese: 5,
+    olives: 5,
     mushrooms: 5,
     pepperoni: 5,
     'tavuk izgara': 5,
@@ -30,18 +36,27 @@ const OrderForm = () => {
     jalepone: 5,
   };
 
+  // Formu disable etmek için geçerli form verilerini kontrol et
+  const isFormDisabled = () => {
+    return !(name.length >= 3 && pizzaSize && dough && extras.length >= 4 && extras.length <= 10);
+  };
 
+  // Boyut seçimini güncelle
   const handleSizeChange = (size) => setPizzaSize(size);
+
+  // Hamur seçimini güncelle
   const handleDoughChange = (doughType) => setDough(doughType);
 
+  // Ekstra malzeme seçimlerini güncelle
   const handleExtrasChange = (extra) => {
-    setExtras(prevExtras =>
+    setExtras((prevExtras) =>
       prevExtras.includes(extra)
-        ? prevExtras.filter(item => item !== extra)
+        ? prevExtras.filter((item) => item !== extra)
         : [...prevExtras, extra]
     );
   };
 
+  // Sipariş adedini artır/değiştir
   const handleQuantityChange = (action) => {
     if (action === 'increase') {
       setQuantity(quantity + 1);
@@ -50,6 +65,7 @@ const OrderForm = () => {
     }
   };
 
+  // Toplam fiyat hesaplama
   const calculateTotalPrice = () => {
     const sizePrice = sizePrices[pizzaSize];
     const doughPrice = doughPrices[dough];
@@ -57,9 +73,65 @@ const OrderForm = () => {
     return (pizzaPrice + sizePrice + doughPrice + extrasPrice) * quantity;
   };
 
+  // Sipariş gönderme
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isFormDisabled()) {
+      setErrorMessage('Lütfen eksik bilgileri tamamlayın.');
+      return;
+    }
+
+    const orderData = {
+      name,
+      pizzaSize,
+      dough,
+      extras,
+      quantity,
+      note,
+      totalPrice: calculateTotalPrice(),
+    };
+
+    setLoading(true);
+    setErrorMessage('');
+
+    // Axios POST isteği ile siparişi gönder
+    axios
+      .post('https://reqres.in/api/pizza', orderData) // API URL'ini gerçek URL ile değiştirin
+      .then((response) => {
+        console.log('Sipariş başarılı:', response.data);
+        // Sipariş başarılı, onOrderSubmit fonksiyonunu çağırıyoruz
+        onOrderSubmit(orderData);
+      })
+      .catch((error) => {
+        console.error('Sipariş gönderilirken hata oluştu:', error);
+        setErrorMessage('Sipariş gönderilirken bir hata oluştu.');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   return (
-    <Form className="order-form">
+    <Form className="order-form" onSubmit={handleSubmit}>
       <h1>Teknolojik Yemekler</h1>
+
+      {/* İsim Girişi (Card) */}
+      <Card className="name-input">
+        <CardBody>
+          <label>
+            İsim:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              minLength={3}
+              placeholder="İsminizi girin"
+            />
+          </label>
+        </CardBody>
+      </Card>
 
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
@@ -72,44 +144,43 @@ const OrderForm = () => {
 
       {/* Boyut Seçimi (Card) */}
       <Card className="size-selection">
-  <CardBody>
-    <label>Boyut:</label>
-    <div>
-      <input
-        type="radio"
-        id="small"
-        name="size"
-        value="small"
-        checked={pizzaSize === 'small'}
-        onChange={() => handleSizeChange('small')}
-      />
-      <label htmlFor="small">Küçük</label>
-    </div>
-    <div>
-      <input
-        type="radio"
-        id="medium"
-        name="size"
-        value="medium"
-        checked={pizzaSize === 'medium'}
-        onChange={() => handleSizeChange('medium')}
-      />
-      <label htmlFor="medium">Orta</label>
-    </div>
-    <div>
-      <input
-        type="radio"
-        id="large"
-        name="size"
-        value="large"
-        checked={pizzaSize === 'large'}
-        onChange={() => handleSizeChange('large')}
-      />
-      <label htmlFor="large">Büyük</label>
-    </div>
-  </CardBody>
-</Card>
-
+        <CardBody>
+          <label>Boyut:</label>
+          <div>
+            <input
+              type="radio"
+              id="small"
+              name="size"
+              value="small"
+              checked={pizzaSize === 'small'}
+              onChange={() => handleSizeChange('small')}
+            />
+            <label htmlFor="small">Küçük</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="medium"
+              name="size"
+              value="medium"
+              checked={pizzaSize === 'medium'}
+              onChange={() => handleSizeChange('medium')}
+            />
+            <label htmlFor="medium">Orta</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="large"
+              name="size"
+              value="large"
+              checked={pizzaSize === 'large'}
+              onChange={() => handleSizeChange('large')}
+            />
+            <label htmlFor="large">Büyük</label>
+          </div>
+        </CardBody>
+      </Card>
 
       {/* Hamur Seçimi (Card) */}
       <Card className="dough-selection">
@@ -126,31 +197,22 @@ const OrderForm = () => {
 
       {/* Ekstra Malzeme Seçimi (Card) */}
       <Card className="extras-selection">
-  <CardBody>
-    <label>Ekstra Malzemeler:</label>
-    {[
-      'pepperoni', 'tavuk izgara', 'misir', 'sarimsak', 'ananas', 'sosis', 
-      'sogan', 'sucuk', 'biber', 'kabak', 'kanada jambonu', 'domates', 'jalepone'
-    ].map((item) => (
-      <div key={item}>
-        <input
-          type="checkbox"
-          id={item}
-          onChange={() => handleExtrasChange(item)}
-        />
-        <label htmlFor={item}>{item.toUpperCase()}</label>
-      </div>
-    ))}
-  </CardBody>
-</Card>
-
-      {/* Sipariş Notu (Card) */}
-      <Card className="note-section">
         <CardBody>
-          <label>
-            Sipariş Notu:
-            <textarea placeholder="Not bırakın..."></textarea>
-          </label>
+          <label>Ekstra Malzemeler (4-10 adet):</label>
+          {[ 
+            'pepperoni', 'tavuk izgara', 'misir', 'sarimsak', 'ananas', 'sosis', 
+            'sogan', 'sucuk', 'biber', 'kabak', 'kanada jambonu', 'domates', 'jalepone'
+          ].map((item) => (
+            <div key={item}>
+              <input
+                type="checkbox"
+                id={item}
+                onChange={() => handleExtrasChange(item)}
+                checked={extras.includes(item)}
+              />
+              <label htmlFor={item}>{item.toUpperCase()}</label>
+            </div>
+          ))}
         </CardBody>
       </Card>
 
@@ -168,8 +230,11 @@ const OrderForm = () => {
         <CardBody>
           <p>Toplam Fiyat: ${calculateTotalPrice().toFixed(2)}</p>
           <div className="order-button">
-            <button type="submit">Siparişi Ver</button>
+            <button type="submit" disabled={loading || isFormDisabled()}>
+              {loading ? 'Gönderiliyor...' : 'Siparişi Ver'}
+            </button>
           </div>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </CardBody>
       </Card>
     </Form>
