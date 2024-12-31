@@ -10,8 +10,9 @@ const OrderConfirmationForm = ({ orderData, onReset }) => {
 
   return (
     <div className="confirmation">
-      <h1>Sipariş Onayı</h1>
+      <h1>TEBRİKLER! SİPARİŞİNİZ ALINDI</h1>
       <h2>Merhaba, {name}!</h2>
+      <h3>Sipariş Özeti:</h3>
       <p>Pizza Boyutu: {pizzaSize}</p>
       <p>Hamur: {dough}</p>
       <p>Ekstra Malzemeler: {extras.join(', ')}</p>

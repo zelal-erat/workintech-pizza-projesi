@@ -97,10 +97,9 @@ const OrderForm = ({ onOrderSubmit }) => {
 
     // Axios POST isteği ile siparişi gönder
     axios
-      .post('https://reqres.in/api/pizza', orderData) // API URL'ini gerçek URL ile değiştirin
+      .post('https://reqres.in/api/pizza', orderData) 
       .then((response) => {
         console.log('Sipariş başarılı:', response.data);
-        // Sipariş başarılı, onOrderSubmit fonksiyonunu çağırıyoruz
         onOrderSubmit(orderData);
       })
       .catch((error) => {
@@ -137,9 +136,12 @@ const OrderForm = ({ onOrderSubmit }) => {
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
-          <h2>Pizza Adı: Margarita</h2>
+          <h2>Pizza Adı:Position Absolute Acı Pizza</h2>
           <p>Fiyat: ${pizzaPrice}</p>
-          <p>Açıklama: Lezzetli bir Margarita pizzası.</p>
+          <p>Frontent Dev olarak hala position: absolute kullanıyorsan bu çok acı pizza tam sana
+          göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha
+          sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen,
+          genel olarak yuvarlak bir hamur işidir.</p>
         </CardBody>
       </Card>
 
@@ -217,6 +219,20 @@ const OrderForm = ({ onOrderSubmit }) => {
         </CardBody>
       </Card>
 
+      
+      
+      <Card className="order-note">
+        <CardBody>
+          <label>
+            <textarea
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              placeholder=" Eklemek istediğiniz bir not var mı?"
+            />
+          </label>
+        </CardBody>
+      
+      </Card>
       {/* Sipariş Adedi Seçimi (Card) */}
       <Card className="quantity">
         <CardBody>
