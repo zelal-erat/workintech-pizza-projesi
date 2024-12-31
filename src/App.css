@@ -15,13 +15,17 @@
 .homepage{
   background-image: url('./images/iteration-1-images/home-banner.png');
   height: 82vh;
-  
     background-size: cover;
     background-position: center center;
     display: flex;
     flex-direction: column;
    align-items: center;
   color:white;
+}
+.homepage h1{
+  width: 300px;
+  text-align: center;
+  font-weight: 100;
 }
 .homepage button{
   background-color: #FDC913;
@@ -38,4 +42,66 @@
   justify-content: center
   
 }
+.confirmation p {
+  display: block;
+  font-size: 16px;
+  margin: 8px 0;
+  color: #555;
+  text-align: left;
+}
+.confirmation button{
+  border-radius: 1rem;
+}
+.tebrik{
+  width: 60%;
+  text-align: center;
+}
+.ozet{
+  text-align: start;
+  margin-top: 15px;
+ 
 
+}
+.ozet p{
+color: white;
+font-size: 1rem;
+}
+
+  @media (max-width: 420px) {
+  .homepage {
+
+    width: 800px;
+     height: 1400px;
+  
+  }
+  .homepage h1{
+    font-size: 6rem;
+        width: 400px;
+        margin-top: 10rem;
+        text-align: center;
+        font-weight: 100;
+
+  }
+  .homepage button {
+   
+    font-size: 1rem; /* Buton yazı boyutunu küçültüyorum */
+  }
+
+  .confirmation{
+        padding: 600px 400px;
+  }
+  .tebrik{
+    width: 100vh;
+
+  }
+  .ozet{
+    text-align: start;
+    width: 200px;
+    margin-top:20px;
+  
+  }
+  .ozet p{
+  color: white;
+  font-size: 1rem;
+  }
+  }

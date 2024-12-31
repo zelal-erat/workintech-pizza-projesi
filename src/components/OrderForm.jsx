@@ -113,31 +113,13 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
-
-      {/* İsim Girişi (Card) */}
-      <Card className="name-input">
-        <CardBody>
-          <label >
-            İsim:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              minLength={3}
-              placeholder="İsminizi girin"
-              data-cy="ad-input"
-
-            />
-          </label>
-        </CardBody>
-      </Card>
+       {/* İsim Girişi (Card) */}
 
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
-          <h2>Pizza Adı:Position Absolute Acı Pizza</h2>
-          <p>Fiyat: ${pizzaPrice}</p>
+          <h1>Pizza Adı:Position Absolute Acı Pizza</h1>
+          <h2>Fiyat: ${pizzaPrice}</h2>
           <p>Frontent Dev olarak hala position: absolute kullanıyorsan bu çok acı pizza tam sana
           göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha
           sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen,
@@ -200,8 +182,8 @@ const OrderForm = ({ onOrderSubmit }) => {
 
       {/* Ekstra Malzeme Seçimi (Card) */}
       <Card className="extras-selection">
-        <CardBody>
-          <label>Ekstra Malzemeler (4-10 adet):</label>
+      <label >Ekstra Malzemeler (4-10 adet) :</label>
+        <CardBody className='extra-malzemeler'>
           {[ 
             'pepperoni', 'tavuk izgara', 'misir', 'sarimsak', 'ananas', 'sosis', 
             'sogan', 'sucuk', 'biber', 'kabak', 'salam', 'domates', 'jalepone'
@@ -213,9 +195,27 @@ const OrderForm = ({ onOrderSubmit }) => {
                 onChange={() => handleExtrasChange(item)}
                 checked={extras.includes(item)}
               />
-              <label htmlFor={item}>{item.toUpperCase()}</label>
+             <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
+
             </div>
           ))}
+        </CardBody>
+      </Card>
+      <Card className="name-input">
+        <CardBody>
+          <label >
+            İsim:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              minLength={3}
+              placeholder="İsminizi girin"
+              data-cy="ad-input"
+
+            />
+          </label>
         </CardBody>
       </Card>
 

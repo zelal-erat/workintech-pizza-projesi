@@ -10,9 +10,14 @@ const OrderConfirmationForm = ({ orderData, onReset }) => {
 
   return (
     <div className="confirmation">
+      <div className='tebrik'>
       <h1>TEBRİKLER! SİPARİŞİNİZ ALINDI</h1>
       <h2>Merhaba, {name}!</h2>
+      </div>
+      
+      <div className='ozet'>
       <h3>Sipariş Özeti:</h3>
+      
       <p>Pizza Boyutu: {pizzaSize}</p>
       <p>Hamur: {dough}</p>
       <p>Ekstra Malzemeler: {extras.join(', ')}</p>
@@ -20,6 +25,7 @@ const OrderConfirmationForm = ({ orderData, onReset }) => {
       <p>Not: {note}</p>
       <p>Toplam Fiyat: ${totalPrice.toFixed(2)}</p>
       <button onClick={onReset}>Yeni Sipariş Ver</button>
+      </div>
     </div>
   );
 };

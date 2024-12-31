@@ -2,105 +2,140 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 .order-form {
-
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    height: 82vh;
-    display: flex;
-    font-family: sans-serif, "Barlow";
-    flex-wrap: wrap;
-    max-width: 60%;
-  
-    font-family: "Barlow";
-  }
-
-  .card {
-    background-color: #f9f9f9;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  }
-  .name-input{
-    width: 100%;
-  }
-  .pizza-details{
-    width: 100%;
-  }
-  .size-selection{
-    width: 357px;
-  }
-  .dough-selection{
-    width: 357px;
-  }
-  .extras-selection{
-    width: 100%;
-
-  }
-  .card label {
-    font-size: 16px;
-    margin-bottom: 10px;
-   
-  }
- .card-body button {
-  background-color:  #FDC913;
-  color: black;
-
- }
+  margin: 0 auto;
+  padding: 1.25rem; 
+  background-color: #fff;
  
- .order-button{
-  width: 357px;
- }
-
- .order-note {
-  width: 100%;
- }
- .order-note textarea{
-  width: 600px;
- }
- .total-price{
-  margin-left: 10px;
+  height: 82vh;
+  display: flex;
+  font-family: sans-serif, "Barlow";
+  flex-wrap: wrap;
+  max-width: 37.5rem; 
+}
+.card {
+  background-color: #f9f9f9;
+  padding: 1.25rem; 
+  margin-bottom: 1.25rem;
+  border: none !important;
   
- }
+   
+}
+.extra-malzemeler{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap:1rem;
+
+}
+
+.name-input {
+  width: 100%;
+}
+.name-input input{
+  width:30rem;
+  border-radius: 0.3rem;;
+}
+.pizza-details {
+  width: 100%;
+}
+.pizza-details h1{
+  font-size:1rem;
+}
+.pizza-details h2{
+  font-weight: bold;
+  font-size: 0.7rem;
+}
+.pizza-details p{
+  font-size: 0.7rem;
+}
+
+.size-selection {
+  width: 17.5rem;
+}
+.size-selection label{
+  font-size:0.7rem;
+}
+
+.dough-selection {
+  width: 17.5em;
+}
+.dough-selection label{
+  font-size: 0.7rem;
+}
+.extras-selection {
+  width: 100%;
+}
+.extras-selection label{
+  font-size:0.7rem;
+}
+
+.card-body button {
+  background-color: #FDC913;
+  color: black;
+}
+
+.order-button {
+  width: 23rem;
+}
+
+.order-note {
+  width: 100%;
+}
+
+.order-note textarea {
+  width: 30rem;
+  border-radius: 0.3rem;
+}
+
+.total-price {
+  margin-left: 1rem;
+    width: 17rem;
+}
 
 .quantity {
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  gap: 10px; 
-  
+  align-items: center;
+  justify-content: center;
+  width: 17rem;
 }
 
 .quantity button {
  
-  color: white; 
-  border: none; 
-  padding: 10px 20px; 
-  font-size: 20px; 
-  cursor: pointer; 
-  border-radius: 5px; 
-  transition: background-color 0.3s ease; 
+  border: none;
+  padding: 0.6rem 1.25rem; /* 10px 20px => 0.625rem 1.25rem */
+  font-size: 1.25rem; /* 20px => 1.25rem */
+  cursor: pointer;
+  border-radius: 0.3rem; 
+  transition: background-color 0.3s ease;
 }
 
 .quantity button:hover {
-  background-color:#dcaf0e;
+  background-color: #dcaf0e;
 }
 
 .quantity span {
-  font-size: 20px; 
-  font-weight: bold; 
-  padding: 10px 15px; 
-  border: 2px solid #FDC913;
-  border-radius: 5px; 
-  display: inline-block; 
-  width: 40px; 
-  text-align: center; 
-  background-color: #f1f1f1; 
+  font-size: 1.25rem; 
+  font-weight: bold;
+  padding: 0.6rem 1rem; 
+  border: 0.1rem solid #FDC913; 
+  border-radius: 0.3rem; 
+  display: inline-block;
+  width: 2.5rem; 
+  text-align: center;
+  background-color: #f1f1f1;
 }
 
-
-.order-button button{
-  width:100%
+.order-button button {
+  width: 55%;
+}
+@media (max-width: 420px) {
+  .order-form{
+    width: 177.5vh;
+  }
+  .size-selection{
+    width: 25rem;
+  }
+  .dough-selection{
+    width: 25rem;
+  }
 }
