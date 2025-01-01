@@ -1,5 +1,4 @@
-
-
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -19,6 +18,10 @@
   color:white;
 }
 .homepage h1{
+  font-family: 'satisfy';
+  color: #FDC913;
+}
+.homepage h2{
   width: 300px;
   text-align: center;
   font-weight: 100;
@@ -77,7 +80,7 @@ font-weight: bold;
      height: 1400px;
   
   }
-  .homepage h1{
+  .homepage h2{
     font-size: 6rem;
         width: 400px;
         margin-top: 10rem;

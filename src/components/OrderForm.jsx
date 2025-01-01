@@ -1,4 +1,3 @@
-// OrderForm.js
 import React, { useState } from 'react';
 import { Form, Card, CardBody } from 'reactstrap';
 import axios from 'axios';
@@ -34,7 +33,6 @@ const OrderForm = ({ onOrderSubmit }) => {
   };
   const isNameValid = name.length >= 3;
 
-
   // Formu disable etmek için geçerli form verilerini kontrol et
   const isFormDisabled = () => {
     return !(isNameValid && pizzaSize && dough && extras.length >= 4 && extras.length <= 10);
@@ -64,11 +62,16 @@ const OrderForm = ({ onOrderSubmit }) => {
     }
   };
 
+  // Toplam ekstra malzeme fiyatını hesapla
+  const calculateExtrasPrice = () => {
+    return extras.reduce((total, extra) => total + extraPrices[extra], 0);
+  };
+
   // Toplam fiyat hesaplama
   const calculateTotalPrice = () => {
     const sizePrice = sizePrices[pizzaSize];
     const doughPrice = doughPrices[dough];
-    const extrasPrice = extras.reduce((total, extra) => total + extraPrices[extra], 0);
+    const extrasPrice = calculateExtrasPrice();
     return (pizzaPrice + sizePrice + doughPrice + extrasPrice) * quantity;
   };
 
@@ -96,7 +99,7 @@ const OrderForm = ({ onOrderSubmit }) => {
 
     // Axios POST isteği ile siparişi gönder
     axios
-      .post('https://reqres.in/api/pizza', orderData) 
+      .post('https://reqres.in/api/pizza', orderData)
       .then((response) => {
         console.log('Sipariş başarılı:', response.data);
         onOrderSubmit(orderData);
@@ -112,24 +115,27 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
-       {/* İsim Girişi (Card) */}
+      {/* İsim Girişi (Card) */}
 
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
-          <h1>Pizza Adı:Position Absolute Acı Pizza</h1>
-          <h2>Fiyat: ${pizzaPrice}</h2>
-          <p>Frontent Dev olarak hala position: absolute kullanıyorsan bu çok acı pizza tam sana
-          göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış, daha
-          sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen,
-          genel olarak yuvarlak bir hamur işidir.</p>
+          <h1>Pizza Adı: Position Absolute Acı Pizza</h1>
+          <h2>Fiyat: ₺{pizzaPrice}</h2>
+          
+          <p>
+            Frontend Developer olarak hala position: absolute kullanıyorsan bu çok acı pizza tam
+            sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış,
+            daha sonra geleneksel olarak odun ateşinde bir fırında yüksek sıcaklıkta pişirilen,
+            genel olarak yuvarlak bir hamur işidir.
+          </p>
         </CardBody>
       </Card>
 
       {/* Boyut Seçimi (Card) */}
       <Card className="size-selection">
         <CardBody>
-          <label className='bold-boyut' >Boyut:</label>
+          <label className="bold-boyut">Boyut:</label>
           <div>
             <input
               type="radio"
@@ -181,11 +187,22 @@ const OrderForm = ({ onOrderSubmit }) => {
 
       {/* Ekstra Malzeme Seçimi (Card) */}
       <Card className="extras-selection">
-      <label >Ekstra Malzemeler (4-10 adet) :</label>
-        <CardBody className='extra-malzemeler'>
-          {[ 
-            'pepperoni', 'tavuk izgara', 'misir', 'sarimsak', 'ananas', 'sosis', 
-            'sogan', 'sucuk', 'biber', 'kabak', 'salam', 'domates', 'jalepone'
+        <label className="extras-label" >Ekstra Malzemeler (4-10 adet seçiniz.) ₺5:</label>
+        <CardBody className="extra-malzemeler">
+          {[
+            'Pepperoni',
+            'tavuk izgara',
+            'misir',
+            'sarimsak',
+            'ananas',
+            'sosis',
+            'sogan',
+            'sucuk',
+            'biber',
+            'kabak',
+            'salam',
+            'domates',
+            
           ].map((item) => (
             <div key={item}>
               <input
@@ -194,15 +211,16 @@ const OrderForm = ({ onOrderSubmit }) => {
                 onChange={() => handleExtrasChange(item)}
                 checked={extras.includes(item)}
               />
-             <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
-
+              <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
             </div>
           ))}
         </CardBody>
       </Card>
+
+      {/* İsim Girişi (Card) */}
       <Card className="name-input">
         <CardBody>
-          <label >
+          <label>
             İsim:
             <input
               type="text"
@@ -220,8 +238,7 @@ const OrderForm = ({ onOrderSubmit }) => {
         </CardBody>
       </Card>
 
-      
-      
+      {/* Sipariş Notu (Card) */}
       <Card className="order-note">
         <CardBody>
           <label>
@@ -229,26 +246,30 @@ const OrderForm = ({ onOrderSubmit }) => {
             <textarea
               value={note}
               onChange={(e) => setNote(e.target.value)}
-              placeholder=" Eklemek istediğiniz bir not var mı?"
+              placeholder="Eklemek istediğiniz bir not var mı?"
             />
           </label>
         </CardBody>
-      
       </Card>
+
       {/* Sipariş Adedi Seçimi (Card) */}
       <Card className="quantity">
         <CardBody>
-          <button type="button" onClick={() => handleQuantityChange('decrease')}>-</button>
+          <button type="button" onClick={() => handleQuantityChange('decrease')}>
+            -
+          </button>
           <span>{quantity}</span>
-          <button type="button" onClick={() => handleQuantityChange('increase')}>+</button>
+          <button type="button" onClick={() => handleQuantityChange('increase')}>
+            +
+          </button>
         </CardBody>
       </Card>
 
-      {/* Toplam Fiyat ve Sipariş Ver Butonu (Card) */}
+      {/* Toplam Ekstra Malzeme Fiyatı ve Toplam Fiyat (Card) */}
       <Card className="total-price">
         <CardBody>
-        
-          <p>Toplam Fiyat: ${calculateTotalPrice().toFixed(2)}</p>
+          <p>Toplam Ekstra Malzeme Fiyatı: ₺{calculateExtrasPrice().toFixed(2)}</p>
+          <p>Toplam Fiyat: ₺{calculateTotalPrice().toFixed(2)}</p>
           <div className="order-button">
             <button type="submit" disabled={loading || isFormDisabled()}>
               {loading ? 'Gönderiliyor...' : 'Siparişi Ver'}
@@ -257,7 +278,6 @@ const OrderForm = ({ onOrderSubmit }) => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </CardBody>
       </Card>
-      
     </Form>
   );
 };

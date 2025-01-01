@@ -1,6 +1,7 @@
 // OrderConfirmationForm.js
 import React from 'react';
-import { Card } from 'reactstrap';
+
+
 
 const OrderConfirmationForm = ({ orderData, onReset }) => {
   if (!orderData) {
@@ -25,7 +26,7 @@ const OrderConfirmationForm = ({ orderData, onReset }) => {
       <p>Ekstra Malzemeler: {extras.join(', ')}</p>
       <p>Sipariş Adedi: {quantity}</p>
       <p>Not: {note}</p>
-      <p>Toplam Fiyat: ${totalPrice.toFixed(2)}</p>
+      <p>Toplam Fiyat: ₺{totalPrice.toFixed(2)}</p>
       </div>
       <button onClick={onReset}>Yeni Sipariş Ver</button>
       
