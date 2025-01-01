@@ -35,10 +35,12 @@ const OrderForm = ({ onOrderSubmit }) => {
     domates: 5,
     jalepone: 5,
   };
+  const isNameValid = name.length >= 3;
+
 
   // Formu disable etmek için geçerli form verilerini kontrol et
   const isFormDisabled = () => {
-    return !(name.length >= 3 && pizzaSize && dough && extras.length >= 4 && extras.length <= 10);
+    return !(isNameValid && pizzaSize && dough && extras.length >= 4 && extras.length <= 10);
   };
 
   // Boyut seçimini güncelle
@@ -78,7 +80,7 @@ const OrderForm = ({ onOrderSubmit }) => {
     e.preventDefault();
 
     if (isFormDisabled()) {
-      setErrorMessage('Lütfen eksik bilgileri tamamlayın.');
+      setErrorMessage('Lütfen eksik bilgileri tamamlayın');
       return;
     }
 
@@ -130,7 +132,7 @@ const OrderForm = ({ onOrderSubmit }) => {
       {/* Boyut Seçimi (Card) */}
       <Card className="size-selection">
         <CardBody>
-          <label>Boyut:</label>
+          <label className='bold-boyut' >Boyut:</label>
           <div>
             <input
               type="radio"
@@ -213,9 +215,11 @@ const OrderForm = ({ onOrderSubmit }) => {
               minLength={3}
               placeholder="İsminizi girin"
               data-cy="ad-input"
-
             />
           </label>
+          {!isNameValid && name.length > 0 && (
+            <p className="error-message">Lütfen en az 3 karakter girin.</p>
+          )}
         </CardBody>
       </Card>
 
@@ -224,6 +228,7 @@ const OrderForm = ({ onOrderSubmit }) => {
       <Card className="order-note">
         <CardBody>
           <label>
+            Sipariş Notu
             <textarea
               value={note}
               onChange={(e) => setNote(e.target.value)}
@@ -245,6 +250,7 @@ const OrderForm = ({ onOrderSubmit }) => {
       {/* Toplam Fiyat ve Sipariş Ver Butonu (Card) */}
       <Card className="total-price">
         <CardBody>
+        
           <p>Toplam Fiyat: ${calculateTotalPrice().toFixed(2)}</p>
           <div className="order-button">
             <button type="submit" disabled={loading || isFormDisabled()}>
