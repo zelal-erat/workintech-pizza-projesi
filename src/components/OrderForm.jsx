@@ -18,9 +18,6 @@ const OrderForm = ({ onOrderSubmit }) => {
   const sizePrices = { small: 8, medium: 10, large: 12 };
   const doughPrices = { normal: 0, thick: 2 };
   const extraPrices = {
-    cheese: 5,
-    olives: 5,
-    mushrooms: 5,
     pepperoni: 5,
     'tavuk izgara': 5,
     misir: 5,
@@ -260,6 +257,7 @@ const OrderForm = ({ onOrderSubmit }) => {
           {errorMessage && <p className="error-message">{errorMessage}</p>}
         </CardBody>
       </Card>
+      
     </Form>
   );
 };

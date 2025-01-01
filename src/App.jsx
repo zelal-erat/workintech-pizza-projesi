@@ -37,7 +37,7 @@ const App = () => {
         <OrderForm onOrderSubmit={handleOrderSubmit} />
       )}
       {currentPage === 'confirmation' && (
-        <OrderConfirmationForm orderData={orderData}  />
+        <OrderConfirmationForm orderData={orderData} onReset={handleReset} />
       )}
     </div>
   );
