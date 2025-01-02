@@ -115,11 +115,11 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
-      {/* İsim Girişi (Card) */}
 
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
+        <img src="./images/iteration-2-images/pictures/form-banner.png" alt="banner" />
           <h1>Pizza Adı: Position Absolute Acı Pizza</h1>
           <h2>Fiyat: ₺{pizzaPrice}</h2>
           

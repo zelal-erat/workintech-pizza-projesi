@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -9,9 +10,9 @@
 }
 .homepage{
   background-image: url('./images/iteration-1-images/home-banner.png');
-  height: 82vh;
+  height: 75vh;
     background-size: cover;
-    background-position: center center;
+    background-position: center ;
     display: flex;
     flex-direction: column;
    align-items: center;
@@ -41,13 +42,23 @@
   justify-content: center
   
 }
+.confirmation h1{
+  font-family: 'satisfy';
+  color: yellow;
+}
 
-.confirmation p {
+.confirmation h2 {
   display: block;
-  font-size: 16px;
+  font-size: 3.5rem;
   margin: 8px 0;
-  color: #555;
-  text-align: left;
+  color: white;
+  text-align: center;
+}
+.siparis{
+  border-top: 1px solid white;
+  width:100%;
+  padding-top: 2rem;
+
 }
 .confirmation button{
   border-radius: 1rem;
@@ -60,7 +71,7 @@
   text-align: start;
   margin-top: 15px;
   background-color: #CE2829;
-  border: 1px solid white;
+  font-weight: 100;
   padding: 1rem;
   margin-bottom: 20px;
  
@@ -110,4 +121,37 @@ font-weight: bold;
   color: white;
   font-size: 1rem;
   }
+  .footer{
+    width: 800px;
+  }
+  .navbar{
+    margin-left: 2rem;
+    width: 700px;
+
+  }
+  .kart-container h3{
+    font-size: 0.8rem;
+  }
+  .kart-container {
+    width: 760px;
+  }
+  .top-rated-container{
+    width: 760px;
+  }
+  .card-container{
+    width: 760px;
+  }
+  .order-form{
+    width: 800px;
+  }
+  .footer{
+    padding-left: 3rem;
+  }
+  .instagram{
+    padding-left: 3rem;
+    margin-top: 1rem; 
+}
+.instagram img{
+  padding: 5px;
+}
   }

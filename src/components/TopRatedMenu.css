@@ -1,0 +1,71 @@
+.top-rated-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  #emphasis {
+    font-size: 18px;
+    font-weight: bold;
+    color: #FF5722;
+    margin-bottom: 10px;
+  }
+  
+  .top-rated-main {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .top-rated-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  /* Buton Stili */
+  .top-rated-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(241, 234, 234);  /* Arka plan beyaz */
+    color: #333;  /* Yazı rengi siyah */
+    border: 1px solid transparent; /* Sınır siyah */
+   border-radius: 20px;
+    padding: 10px 15px;  /* Butonun boyutunu küçülttük */
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Geçiş efektleri */
+    width: 80px;  /* Buton genişliğini küçülttük */
+    height: 80px; /* Buton yüksekliğini küçülttük */
+    text-align: center;
+  }
+  
+  .top-rated-button:hover {
+    background-color: #333;  /* Üzerine gelince arka plan siyah */
+    color: white;  /* Yazı rengi beyaz */
+    border-color: white; /* Sınır beyaz olacak */
+  }
+  
+  /* Buton içindeki açıklamalar */
+  .top-rated-button-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .top-rated-button img {
+    width: 30px;   /* İkon boyutlarını küçülttük */
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .top-rated-button p {
+    margin: 0;
+    font-size: 12px; /* Yazı boyutunu küçülttük */
+  }
+  

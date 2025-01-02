@@ -4,6 +4,8 @@ import OrderForm from './components/orderForm';
 import OrderConfirmationForm from './components/OrderConfirmation';
 import './App.css';
 import Header from './components/Header';
+import Footer from './components/Footer';
+
 
 const App = () => {
   const [orderData, setOrderData] = useState(null); 
@@ -39,7 +41,9 @@ const App = () => {
       {currentPage === 'confirmation' && (
         <OrderConfirmationForm orderData={orderData} onReset={handleReset} />
       )}
+      <Footer/>
     </div>
+
   );
 };
 

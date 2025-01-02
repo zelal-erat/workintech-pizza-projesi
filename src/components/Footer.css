@@ -1,0 +1,51 @@
+.footer{
+    background-color: black;
+    display: flex;
+    font-family: "Barlow";
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: white;
+    margin-top: auto;
+    padding-left: 6rem;
+    padding-right: 2rem;
+}
+.footer-contact h1{
+font-family: "Londrina Solid";
+
+font-weight: bold;
+}
+.footer-contact{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+.footer-contact>p>img{
+    padding-right: 0.2rem;
+}
+
+
+.hot-menu h2{
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;  
+}
+.hot-menu{
+    padding: 3rem;
+    margin-top: 1rem;
+}
+.instagram{
+    padding-left: 3rem;
+    margin-top: 5rem; 
+}
+.instagram img{
+    padding: 30px;
+}
+
+
+
+.instagram>h2{
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem; 
+    
+}

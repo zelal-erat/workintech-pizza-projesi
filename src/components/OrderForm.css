@@ -3,96 +3,105 @@
 
 .order-form {
   margin: 0 auto;
-  padding: 1.25rem; 
+  padding: 1.25rem;
   background-color: #fff;
-  height: 82vh;
+  height: auto;
+  min-height: 82vh; /* Yüksekliği dinamik yaparak içerik taşmalarını engelledik */
   display: flex;
-  font-family: "Barlow";
   flex-wrap: wrap;
-  max-width: 37.5rem; 
+  justify-content: center; /* Ortalamak için ekledik */
+  font-family: "Barlow";
+  width: 37.5rem;
 }
+
 .card {
   background-color: #f9f9f9;
-  padding: 1.25rem; 
+  padding: 1.25rem;
   margin-bottom: 1.25rem;
-   
+  width: 100%; /* Karteyi tam genişlikte yaparak içerik hizalamasını sağladık */
+  box-sizing: border-box; /* Padding'i genişliğe dahil ettik */
 }
+
 .pizza-details,
- .name-input,
-  .size-selection, 
-  .dough-selection, 
-  .extras-selection,
-   .order-note,
-   .quantity
-   {
-    border: none !important;  
-
+.name-input,
+.size-selection,
+.dough-selection,
+.extras-selection,
+.order-note,
+.quantity {
+  border: none !important;
+  
 }
 
-.extra-malzemeler{
-  display: grid
-;
-
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, auto);
-    flex-wrap: wrap;
-    gap: 1rem;
+.extra-malzemeler {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  flex-wrap: wrap;
+  grid-template-rows: repeat(3, auto);
+  width: 100%; /* Genişlik sınırı ekledik */
 }
+
 .extras-label {
   font-weight: bold; /* Bu kısımdaki metin bold olacak */
 }
+
 .name-input {
   width: 100%;
+  margin-bottom: 1rem; /* Alanlar arasına boşluk ekledik */
 }
-.name-input input{
-  width:30rem;
-  border-radius: 0.3rem;;
+
+.name-input input {
+  width: 100%;
+  max-width: 30rem; /* Input'u tam genişlikte tutarak uyumlu hale getirdik */
+  border-radius: 0.3rem;
+  padding: 0.75rem;
+  box-sizing: border-box;
 }
+
 .pizza-details {
   width: 100%;
-  
 }
-.pizza-details h1{
-  font-size:1.2rem;
+
+.pizza-details h1 {
+  font-size: 1.2rem;
   font-weight: 100;
-  margin-bottom: 15px;
+  margin-bottom: 0.5rem; /* Başlıklar arasına daha fazla boşluk ekledik */
 }
-.pizza-details h2{
+
+.pizza-details h2 {
   font-weight: bold;
   font-size: 1rem;
-  margin-bottom: 15px;
+  margin-bottom: 0.5rem; /* Başlıklar arasına daha fazla boşluk ekledik */
 }
-.pizza-details p{
+
+.pizza-details p {
   font-size: 1rem;
 }
 
-.size-selection {
-  width: 17.5rem;
-
+.size-selection,
+.dough-selection {
+  width: 50%;
+  margin-bottom: 1rem; /* Alanlar arasına boşluk ekledik */
 }
-.size-selection label{
-  font-size:1rem;
-  padding-left: 0;
+
+.size-selection label,
+.dough-selection label {
+  font-size: 1rem;
   margin-bottom: 0.5rem;
 }
-.bold-boyut{
+
+.bold-boyut {
   font-weight: bold;
-  
 }
-.dough-selection {
-  width: 17.5em;
-}
-.dough-selection label{
-  font-size: 1rem;
-}
+
 .extras-selection {
   width: 100%;
 }
-.extras-selection label{
-  font-size:1rem;
-  padding-left: 0.3rem;
-  
-  
+
+.extras-selection label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .card-body button {
@@ -101,7 +110,9 @@
 }
 
 .order-button {
-  width: 23rem;
+  width: 100%;
+  max-width: 23rem;
+  margin: 1rem 0; /* Butonlar arasına boşluk ekledik */
 }
 
 .order-note {
@@ -109,28 +120,38 @@
 }
 
 .order-note textarea {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   border-radius: 0.3rem;
+  padding: 0.75rem;
+  box-sizing: border-box;
 }
 
 .total-price {
+  width: 70%;
+  max-width: 18rem;
   margin-left: 1rem;
-    width: 18rem;
+}
+
+.name-input,
+.order-note {
+  font-weight: bold;
+}
+
+.pizza-details h1 {
+  font-weight: bold;
+}
+.quantity{
+  width: 40%;
   
 }
-.name-input, .order-note{
-  font-weight: bold;
-}
-.pizza-details h1{
-  font-weight: bold;
-}
+
 .quantity button {
- 
   border: none;
   padding: 0.6rem 1.25rem; /* 10px 20px => 0.625rem 1.25rem */
   font-size: 1.25rem; /* 20px => 1.25rem */
   cursor: pointer;
-  border-radius: 0.3rem; 
+  border-radius: 0.3rem;
   transition: background-color 0.3s ease;
 }
 
@@ -139,18 +160,18 @@
 }
 
 .quantity span {
-  font-size: 1.25rem; 
+  font-size: 1.25rem;
   font-weight: bold;
-  padding: 0.6rem 1rem; 
-  border: 0.1rem solid #FDC913; 
-  border-radius: 0.3rem; 
+  padding: 0.6rem 1rem;
+  border: 0.1rem solid #FDC913;
+  border-radius: 0.3rem;
   display: inline-block;
-  width: 2.5rem; 
+  width: 3rem;
   text-align: center;
   background-color: #f1f1f1;
 }
 
 .order-button button {
-  width: 55%;
+  width: 100%;
+  max-width: 23rem;
 }
-
