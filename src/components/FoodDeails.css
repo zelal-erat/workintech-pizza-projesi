@@ -1,19 +1,22 @@
-.navbar {
+
+.deails{
     display: flex;  /* Navbar öğelerini yatayda sıralamak için flexbox kullanıyoruz */
     justify-content: center;  /* İçeriği ortalamak için */
     align-items: center;  /* Dikeyde ortalamak için */
     gap: 20px;  /* Fotoğraflar arasındaki boşluğu azaltıyoruz */
     padding: 0 20px;  /* Navbar'ın sağ ve sol tarafına 20px boşluk ekliyoruz */
+    margin-top: 12px;
+    margin-bottom: 12px;
   }
   
-  .navbar p {
+  .deails p {
     display: flex;  /* Görsel ve yazıyı yatayda hizalamak için flexbox kullanıyoruz */
     align-items: center;  /* Görselleri ve yazıları dikeyde ortalamak için */
     font-size: 14px;  /* Yazı boyutunu ayarlıyoruz */
     margin: 0;  /* Paragrafların etrafındaki boşluğu sıfırlıyoruz */
   }
   
-  .navbar img {
+  .deails img {
     width: 30px;  /* Görsellerin boyutunu ayarlıyoruz */
     height: auto;  /* Görsellerin boyutunu orantılı olarak küçültüyoruz */
     margin-right: 5px;  /* Görseller ile yazılar arasına boşluk ekliyoruz */

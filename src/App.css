@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 .logo {
   height: 6em;
@@ -17,6 +18,7 @@
     flex-direction: column;
    align-items: center;
   color:white;
+  
 }
 .homepage h1{
   font-family: 'satisfy';
@@ -55,17 +57,33 @@
   text-align: center;
 }
 .siparis{
-  border-top: 1px solid white;
-  width:100%;
-  padding-top: 2rem;
+
+  width:80%;
+ 
 
 }
 .confirmation button{
   border-radius: 1rem;
 }
-.tebrik{
-  width: 60%;
+
+.toplam-özet{
+  border: 1px solid white;
+  width: 70%;
+  height: 40%;
+  padding: 20px;
   text-align: center;
+  border-radius: 0.3rem;
+  margin-bottom: 10px;
+  text-align: start;
+}
+.tebrik{
+  width: 30%;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+.tebrik h2{
+  font-family: 'Barlow';
+  font-size: 50px;
 }
 .ozet{
   text-align: start;
@@ -74,13 +92,15 @@
   font-weight: 100;
   padding: 1rem;
   margin-bottom: 20px;
+  padding-left: 6rem;
+  font-family: 'Barlow';
  
 
 }
 .ozet p{
 color: white;
 font-size: 1rem;
-font-weight: bold;
+font-family: 'Barlow';
 }
 
 
@@ -88,13 +108,13 @@ font-weight: bold;
   .homepage {
 
     width: 800px;
-     height: 1400px;
+     
   
   }
   .homepage h2{
-    font-size: 6rem;
+    font-size: 2rem;
         width: 400px;
-        margin-top: 10rem;
+       
         text-align: center;
         font-weight: 100;
 
@@ -113,7 +133,7 @@ font-weight: bold;
   }
   .ozet{
     text-align: start;
-    width: 200px;
+    width: 400px;
     margin-top:20px;
   
   }
@@ -124,7 +144,7 @@ font-weight: bold;
   .footer{
     width: 800px;
   }
-  .navbar{
+  .deails{
     margin-left: 2rem;
     width: 700px;
 
@@ -154,4 +174,5 @@ font-weight: bold;
 .instagram img{
   padding: 5px;
 }
+
   }

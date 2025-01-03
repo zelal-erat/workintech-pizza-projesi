@@ -1,7 +1,7 @@
 import './FoodDeails.css'
-export default function NavBar(){
+export default function FoodDeails(){
     return(
-        <div className="navbar">
+        <div className="deails">
             <p>
             <img src="./images/iteration-2-images/icons/1.svg" alt="yeni-kore"/>
             Yeni Kore

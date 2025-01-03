@@ -115,11 +115,13 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
+      
+       <img src="./images/iteration-2-images/pictures/form-banner.png" alt="banner" />
+    
 
       {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
-        <img src="./images/iteration-2-images/pictures/form-banner.png" alt="banner" />
           <h1>Pizza Adı: Position Absolute Acı Pizza</h1>
           <h2>Fiyat: ₺{pizzaPrice}</h2>
           
@@ -131,6 +133,7 @@ const OrderForm = ({ onOrderSubmit }) => {
           </p>
         </CardBody>
       </Card>
+    
 
       {/* Boyut Seçimi (Card) */}
       <Card className="size-selection">
@@ -145,7 +148,7 @@ const OrderForm = ({ onOrderSubmit }) => {
               checked={pizzaSize === 'small'}
               onChange={() => handleSizeChange('small')}
             />
-            <label htmlFor="small">Küçük</label>
+            <label htmlFor="small">S</label>
           </div>
           <div>
             <input
@@ -156,7 +159,7 @@ const OrderForm = ({ onOrderSubmit }) => {
               checked={pizzaSize === 'medium'}
               onChange={() => handleSizeChange('medium')}
             />
-            <label htmlFor="medium">Orta</label>
+            <label htmlFor="medium">M</label>
           </div>
           <div>
             <input
@@ -167,7 +170,7 @@ const OrderForm = ({ onOrderSubmit }) => {
               checked={pizzaSize === 'large'}
               onChange={() => handleSizeChange('large')}
             />
-            <label htmlFor="large">Büyük</label>
+            <label htmlFor="large">L</label>
           </div>
         </CardBody>
       </Card>

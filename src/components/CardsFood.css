@@ -4,6 +4,7 @@
     align-items: center;  /* Kartları dikeyde ortalamak için */
     gap: 20px;  /* Kartlar arasına boşluk eklemek için */
     padding: 20px;
+    background-color: #FAF7F2;
   }
   
   .terminal, .pizza, .burger {
@@ -11,11 +12,15 @@
     flex-direction: column;  /* Görsel ve yazıyı dikeyde sıralamak için */
     justify-content: center;
     align-items: center;
-    width: 150px;  /* Kartın genişliğini belirledik */
+    width: 190px;
+    height: 200px;  /* Kartın genişliğini belirledik */
     text-align: center;
     margin: 10px;  /* Kartlar arasına boşluk eklemek için */
+    background-color: white;
+    border-radius: 1rem;
     
   }
+  
   
   .terminal img, .pizza img, .burger img {
     width: 100px;  /* Görsellerin boyutunu küçültüyoruz */
@@ -26,4 +31,20 @@
     font-size: 14px;  /* Yazı boyutunu küçültüyoruz */
     margin-top: 10px;  /* Yazı ile görsel arasındaki boşluğu ekliyoruz */
   }
-  
+  .food-details {
+    display: flex;
+    justify-content: space-between; /* Distribute the elements evenly */
+    margin-top: 10px; /* Add spacing between the image/description and details */
+}
+
+.food-details span {
+  margin-right: 15px;
+  font-size: 0.8rem;
+  text-align: center;
+  margin-left: 15px;
+}
+
+.food-price {
+    font-weight: bold; /* Optional, make price stand out */
+}
+

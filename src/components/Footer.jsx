@@ -3,7 +3,9 @@ export default function Footer (){
     return(
        <div className="footer">
         <div className=" footer-contact">
-        <h1>Teknolojik Yemekler</h1>
+      <div className='başlik-logo'>
+        <img src="./images/iteration-2-images/footer/logo-footer.svg" alt="logo-footer" />
+        </div>
         <p>
             <img src="./images/iteration-2-images/footer/icons/icon-1.png" alt="konum" />
             341 Londonderyy Road, İstanbul Türkiye
@@ -27,17 +29,15 @@ export default function Footer (){
             <p>Position Absolute Acı Burger</p>
         </div>
         <div className="instagram">
-            <h2>İnstagram</h2>
+            <h2>Instagram</h2>
         <img src="./images/iteration-2-images/footer/insta/li-0.png" alt="insta-0" />
         <img src="./images/iteration-2-images/footer/insta/li-1.png" alt="insta-1" />
         <img src="./images/iteration-2-images/footer/insta/li-2.png" alt="insta-2" />
         <img src="./images/iteration-2-images/footer/insta/li-3.png" alt="insta-3" />
         <img src="./images/iteration-2-images/footer/insta/li-4.png" alt="insta-4" />
         <img src="./images/iteration-2-images/footer/insta/li-5.png" alt="insta-5" />
-
         </div>
-
-
        </div>
+       
     )
 }

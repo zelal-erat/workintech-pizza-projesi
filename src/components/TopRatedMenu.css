@@ -1,14 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
 .top-rated-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    background-color: #FAF7F2;
   }
   
   #emphasis {
-    font-size: 18px;
+    font-size: 25px;
     font-weight: bold;
     color: #FF5722;
+    font-family: 'Satisfy';
     margin-bottom: 10px;
   }
   
@@ -32,7 +35,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(241, 234, 234);  /* Arka plan beyaz */
+    background-color: white;
     color: #333;  /* Yazı rengi siyah */
     border: 1px solid transparent; /* Sınır siyah */
    border-radius: 20px;
