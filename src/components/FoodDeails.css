@@ -1,24 +1,24 @@
 
 .deails{
-    display: flex;  /* Navbar öğelerini yatayda sıralamak için flexbox kullanıyoruz */
-    justify-content: center;  /* İçeriği ortalamak için */
-    align-items: center;  /* Dikeyde ortalamak için */
-    gap: 20px;  /* Fotoğraflar arasındaki boşluğu azaltıyoruz */
-    padding: 0 20px;  /* Navbar'ın sağ ve sol tarafına 20px boşluk ekliyoruz */
+    display: flex;  
+    justify-content: center;  
+    align-items: center; 
+    gap: 20px;  
+    padding: 0 20px;  
     margin-top: 12px;
     margin-bottom: 12px;
   }
   
   .deails p {
-    display: flex;  /* Görsel ve yazıyı yatayda hizalamak için flexbox kullanıyoruz */
-    align-items: center;  /* Görselleri ve yazıları dikeyde ortalamak için */
-    font-size: 14px;  /* Yazı boyutunu ayarlıyoruz */
-    margin: 0;  /* Paragrafların etrafındaki boşluğu sıfırlıyoruz */
+    display: flex;  
+    align-items: center; 
+    font-size: 14px;  
+    margin: 0;  
   }
   
   .deails img {
-    width: 30px;  /* Görsellerin boyutunu ayarlıyoruz */
-    height: auto;  /* Görsellerin boyutunu orantılı olarak küçültüyoruz */
-    margin-right: 5px;  /* Görseller ile yazılar arasına boşluk ekliyoruz */
+    width: 30px;  
+    height: auto;  
+    margin-right: 5px;  
   }
   

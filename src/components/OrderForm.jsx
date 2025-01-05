@@ -1,59 +1,134 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Form, Card, CardBody } from 'reactstrap';
 import axios from 'axios';
 import './OrderForm.css';
+import { useHistory } from 'react-router-dom';
 
 const OrderForm = ({ onOrderSubmit }) => {
+  const history = useHistory();
   const [name, setName] = useState('');
-  const [pizzaSize, setPizzaSize] = useState('medium');
+  const [pizzaSize, setPizzaSize] = useState('');
   const [dough, setDough] = useState('normal');
   const [extras, setExtras] = useState([]);
   const [quantity, setQuantity] = useState(1);
   const [note, setNote] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessages, setErrorMessages] = useState({});
   const [loading, setLoading] = useState(false);
+  const [isFastDelivery, setIsFastDelivery] = useState(false); // Yeni durum ekledik
 
-  const pizzaPrice = 85.50; // Temel pizza fiyatı
-  const sizePrices = { small: 8, medium: 10, large: 12 };
-  const doughPrices = { normal: 0, thick: 2 };
+  // Referanslar
+  const nameRef = useRef(null);
+  const sizeRef = useRef(null);
+  const extrasRef = useRef(null);
+
+  const pizzaPrice = 85.50;
+  const sizePrices = { Small: 8, Medium: 10, Large: 12 };
+  const doughPrices = { normal: 0, ince: 2, kalın: 4 };
   const extraPrices = {
-    pepperoni: 5,
-    'tavuk izgara': 5,
-    misir: 5,
-    sarimsak: 5,
-    ananas: 5,
-    sosis: 5,
-    sogan: 5,
-    sucuk: 5,
-    biber: 5,
-    kabak: 5,
-    'salam': 5,
-    domates: 5,
-    jalepone: 5,
-  };
-  const isNameValid = name.length >= 3;
-
-  // Formu disable etmek için geçerli form verilerini kontrol et
-  const isFormDisabled = () => {
-    return !(isNameValid && pizzaSize && dough && extras.length >= 4 && extras.length <= 10);
+    Pepperoni: 5,
+    'Tavuk Izgara': 5,
+    Mısır: 5,
+    Sarımsak: 5,
+    Ananas: 5,
+    Sosis: 5,
+    Soğan: 5,
+    Sucuk: 5,
+    Biber: 5,
+    Kabak: 5,
+    Salam: 5,
+    Domates: 5,
+    Jalepone: 5,
   };
 
-  // Boyut seçimini güncelle
-  const handleSizeChange = (size) => setPizzaSize(size);
+  // Hata mesajlarını güncelleme
+  const validateForm = () => {
+    const errors = {};
 
-  // Hamur seçimini güncelle
-  const handleDoughChange = (doughType) => setDough(doughType);
+    if (name.length < 3) {
+      errors.name = 'Lütfen en az 3 karakter girin.';
+    }
 
-  // Ekstra malzeme seçimlerini güncelle
-  const handleExtrasChange = (extra) => {
-    setExtras((prevExtras) =>
-      prevExtras.includes(extra)
-        ? prevExtras.filter((item) => item !== extra)
-        : [...prevExtras, extra]
-    );
+    if (!pizzaSize) {
+      errors.size = 'Lütfen boyut seçin.';
+    }
+
+    if (extras.length < 4) {
+      errors.extras = 'Lütfen en az 4 ekstra malzeme seçin.';
+    } else if (extras.length > 10) {
+      errors.extras = 'Lütfen en fazla 10 ekstra malzeme seçin.';
+    }
+
+    setErrorMessages(errors);
+    return Object.keys(errors).length === 0;
   };
 
-  // Sipariş adedini artır/değiştir
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    setName(value);
+    if (value.length >= 3) {
+      setErrorMessages((prevErrors) => {
+        const { name, ...rest } = prevErrors;
+        return rest;
+      });
+    } else {
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        name: 'Lütfen en az 3 karakter girin.',
+      }));
+    }
+  };
+
+  const handleSizeChange = (e) => {
+    setPizzaSize(e.target.value);
+    if (e.target.value) {
+      setErrorMessages((prevErrors) => {
+        const { size, ...rest } = prevErrors;
+        return rest;
+      });
+    } else {
+      setErrorMessages((prevErrors) => ({
+        ...prevErrors,
+        size: 'Lütfen boyut seçin.',
+      }));
+    }
+  };
+
+  const handleExtrasChange = (e) => {
+    const extra = e.target.value;
+    const isChecked = e.target.checked;
+  
+    
+    setExtras((prevExtras) => {
+      let updatedExtras;
+      if (isChecked) {
+        updatedExtras = [...prevExtras, extra];
+      } else {
+        updatedExtras = prevExtras.filter((item) => item !== extra);
+      }
+  
+      // Ekstra malzeme sayısını kontrol et
+      if (updatedExtras.length < 4) {
+        setErrorMessages((prevErrors) => ({
+          ...prevErrors,
+          extras: 'Lütfen en az 4 ekstra malzeme seçin.',
+        }));
+      } else if (updatedExtras.length > 10) {
+        setErrorMessages((prevErrors) => ({
+          ...prevErrors,
+          extras: 'Lütfen en fazla 10 ekstra malzeme seçin.',
+        }));
+      } else {
+        setErrorMessages((prevErrors) => {
+          const { extras, ...rest } = prevErrors;
+          return rest;
+        });
+      }
+  
+      return updatedExtras;
+    });
+  };
+  const handleDoughChange = (e) => setDough(e.target.value);
+
   const handleQuantityChange = (action) => {
     if (action === 'increase') {
       setQuantity(quantity + 1);
@@ -62,25 +137,34 @@ const OrderForm = ({ onOrderSubmit }) => {
     }
   };
 
-  // Toplam ekstra malzeme fiyatını hesapla
   const calculateExtrasPrice = () => {
     return extras.reduce((total, extra) => total + extraPrices[extra], 0);
   };
 
-  // Toplam fiyat hesaplama
   const calculateTotalPrice = () => {
-    const sizePrice = sizePrices[pizzaSize];
+    const sizePrice = sizePrices[pizzaSize] || 0;
     const doughPrice = doughPrices[dough];
     const extrasPrice = calculateExtrasPrice();
-    return (pizzaPrice + sizePrice + doughPrice + extrasPrice) * quantity;
+    const fastDeliveryPrice = isFastDelivery ? 50 : 0; // Hızlı kurye ücreti
+
+    return (pizzaPrice + sizePrice + doughPrice + extrasPrice + fastDeliveryPrice) * quantity;
   };
 
-  // Sipariş gönderme
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isFormDisabled()) {
-      setErrorMessage('Lütfen eksik bilgileri tamamlayın');
+    const isValid = validateForm();
+    if (!isValid) {
+      // Hatalı alan varsa, ilgili input alanına odaklan
+      setTimeout(() => {
+        if (errorMessages.name) {
+          nameRef.current.focus();
+        } else if (errorMessages.size) {
+          sizeRef.current.focus();
+        } else if (errorMessages.extras) {
+          extrasRef.current.focus();
+        }
+      }, 0);  // Hatalı alanın odaklanmasını hemen yapmak için setTimeout kullanıyoruz
       return;
     }
 
@@ -92,21 +176,21 @@ const OrderForm = ({ onOrderSubmit }) => {
       quantity,
       note,
       totalPrice: calculateTotalPrice(),
+      isFastDelivery, // Hızlı kurye bilgisini ekle
     };
 
     setLoading(true);
-    setErrorMessage('');
 
-    // Axios POST isteği ile siparişi gönder
     axios
       .post('https://reqres.in/api/pizza', orderData)
       .then((response) => {
         console.log('Sipariş başarılı:', response.data);
         onOrderSubmit(orderData);
+        history.push('/confirmation');
       })
       .catch((error) => {
         console.error('Sipariş gönderilirken hata oluştu:', error);
-        setErrorMessage('Sipariş gönderilirken bir hata oluştu.');
+        setErrorMessages({ apiError: 'Sipariş gönderilirken bir hata oluştu.' });
       })
       .finally(() => {
         setLoading(false);
@@ -115,16 +199,12 @@ const OrderForm = ({ onOrderSubmit }) => {
 
   return (
     <Form className="order-form" onSubmit={handleSubmit}>
-      
-       <img src="./images/iteration-2-images/pictures/form-banner.png" alt="banner" />
-    
+      <img src="./images/iteration-2-images/pictures/form-banner.png" alt="banner" />
 
-      {/* Pizza Detayları (Card) */}
       <Card className="pizza-details">
         <CardBody>
           <h1>Pizza Adı: Position Absolute Acı Pizza</h1>
           <h2>Fiyat: ₺{pizzaPrice}</h2>
-          
           <p>
             Frontend Developer olarak hala position: absolute kullanıyorsan bu çok acı pizza tam
             sana göre. Pizza, domates, peynir ve genellikle çeşitli diğer malzemelerle kaplanmış,
@@ -133,152 +213,167 @@ const OrderForm = ({ onOrderSubmit }) => {
           </p>
         </CardBody>
       </Card>
-    
 
-      {/* Boyut Seçimi (Card) */}
+      {/* Boyut Seçimi */}
       <Card className="size-selection">
         <CardBody>
           <label className="bold-boyut">Boyut:</label>
-          <div>
-            <input
-              type="radio"
-              id="small"
-              name="size"
-              value="small"
-              checked={pizzaSize === 'small'}
-              onChange={() => handleSizeChange('small')}
-            />
-            <label htmlFor="small">S</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="medium"
-              name="size"
-              value="medium"
-              checked={pizzaSize === 'medium'}
-              onChange={() => handleSizeChange('medium')}
-            />
-            <label htmlFor="medium">M</label>
-          </div>
-          <div>
-            <input
-              type="radio"
-              id="large"
-              name="size"
-              value="large"
-              checked={pizzaSize === 'large'}
-              onChange={() => handleSizeChange('large')}
-            />
-            <label htmlFor="large">L</label>
-          </div>
+          {['Small', 'Medium', 'Large'].map((size) => (
+            <div key={size} className="radio-container">
+              <input
+                type="radio"
+                id={size}
+                name="size"
+                value={size}
+                checked={pizzaSize === size}
+                onChange={handleSizeChange}
+                className="radio-button"
+                ref={sizeRef}
+              />
+              <label htmlFor={size} className="radio-label">
+                {size === 'Small' ? 'S' : size === 'Medium' ? 'M' : 'L'}
+              </label>
+            </div>
+          ))}
+
+          {errorMessages.size && (
+            <div className="error-message-container">
+              <p className="error-message">*{errorMessages.size}</p>
+            </div>
+          )}
         </CardBody>
       </Card>
+      
 
-      {/* Hamur Seçimi (Card) */}
+
       <Card className="dough-selection">
-        <CardBody>
-          <label>
-            Hamur:
-            <select value={dough} onChange={(e) => handleDoughChange(e.target.value)}>
-              <option value="normal">Normal</option>
-              <option value="thick">Kalın</option>
-            </select>
-          </label>
-        </CardBody>
-      </Card>
+  <CardBody>
+    <label htmlFor="dough">Hamur:</label>
+    <select
+      id="dough"
+      value={dough}
+      onChange={handleDoughChange}
+    >
+      {['normal', 'ince', 'kalın'].map((doughType) => (
+        <option key={doughType} value={doughType}>
+          {doughType.charAt(0).toUpperCase() + doughType.slice(1)}
+        </option>
+      ))}
+    </select>
+  </CardBody>
+</Card>
 
-      {/* Ekstra Malzeme Seçimi (Card) */}
+
+      {/* Ekstra Malzeme Seçimi */}
       <Card className="extras-selection">
-        <label className="extras-label" >Ekstra Malzemeler (4-10 adet seçiniz.) ₺5:</label>
+        <label className="extras-label">Ekstra Malzemeler (4-10 adet seçiniz.) ₺5:</label>
         <CardBody className="extra-malzemeler">
           {[
             'Pepperoni',
-            'tavuk izgara',
-            'misir',
-            'sarimsak',
-            'ananas',
-            'sosis',
-            'sogan',
-            'sucuk',
-            'biber',
-            'kabak',
-            'salam',
-            'domates',
-            
+            'Tavuk Izgara',
+            'Mısır',
+            'Sarımsak',
+            'Ananas',
+            'Sosis',
+            'Soğan',
+            'Sucuk',
+            'Biber',
+            'Kabak',
+            'Salam',
+            'Domates',
           ].map((item) => (
             <div key={item}>
               <input
                 type="checkbox"
                 id={item}
-                onChange={() => handleExtrasChange(item)}
+                value={item}
+                onChange={handleExtrasChange}
                 checked={extras.includes(item)}
+                aria-labelledby={item}
+                ref={item === 'Pepperoni' ? extrasRef : null}
               />
               <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
             </div>
           ))}
+          
+        </CardBody>
+      </Card>
+      {errorMessages.extras && (
+            <div className="error-message-container">
+              <p className="error-message">*{errorMessages.extras}</p>
+            </div>
+          )}
+
+      {/* Hızlı Kurye Seçeneği */}
+      <Card className="fast-delivery">
+        <CardBody>
+          <label>
+            <input
+              type="checkbox"
+              checked={isFastDelivery}
+              onChange={() => setIsFastDelivery((prev) => !prev)}
+            />
+            Hızlı teslimat seçeneği(₺50)
+          </label>
         </CardBody>
       </Card>
 
-      {/* İsim Girişi (Card) */}
+      {/* İsim Girişi */}
       <Card className="name-input">
         <CardBody>
-          <label>
-            İsim:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              minLength={3}
-              placeholder="İsminizi girin"
-              data-cy="ad-input"
-            />
-          </label>
-          {!isNameValid && name.length > 0 && (
-            <p className="error-message">Lütfen en az 3 karakter girin.</p>
+          <label htmlFor="name">İsim:</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={handleNameChange}
+            required
+            minLength={3}
+            placeholder="İsminizi girin"
+            data-cy="ad-input"
+            ref={nameRef}
+          />
+          {errorMessages.name && (
+            <div className="error-message-container">
+              <p className="error-message">*{errorMessages.name}</p>
+            </div>
           )}
         </CardBody>
       </Card>
 
-      {/* Sipariş Notu (Card) */}
+      {/* Sipariş Notu */}
       <Card className="order-note">
         <CardBody>
-          <label>
-            Sipariş Notu
-            <textarea
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              placeholder="Eklemek istediğiniz bir not var mı?"
-            />
-          </label>
+          <label htmlFor="note">Sipariş Notu:</label>
+          <textarea
+            id="note"
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="Eklemek istediğiniz bir not var mı?"
+          />
         </CardBody>
       </Card>
 
-      {/* Sipariş Adedi Seçimi (Card) */}
+      {/* Adet Seçimi */}
       <Card className="quantity">
         <CardBody>
-          <button type="button" onClick={() => handleQuantityChange('decrease')}>
-            -
-          </button>
+          <button type="button" onClick={() => handleQuantityChange('decrease')}>-</button>
           <span>{quantity}</span>
-          <button type="button" onClick={() => handleQuantityChange('increase')}>
-            +
-          </button>
+          <button type="button" onClick={() => handleQuantityChange('increase')}>+</button>
         </CardBody>
       </Card>
 
-      {/* Toplam Ekstra Malzeme Fiyatı ve Toplam Fiyat (Card) */}
+      {/* Toplam Fiyat */}
       <Card className="total-price">
         <CardBody>
           <p>Toplam Ekstra Malzeme Fiyatı: ₺{calculateExtrasPrice().toFixed(2)}</p>
           <p>Toplam Fiyat: ₺{calculateTotalPrice().toFixed(2)}</p>
           <div className="order-button">
-            <button type="submit" disabled={loading || isFormDisabled()}>
+            <button type="submit" disabled={loading}>
               {loading ? 'Gönderiliyor...' : 'Siparişi Ver'}
             </button>
           </div>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessages.apiError && <p className="error-message">{errorMessages.apiError}</p>}
         </CardBody>
       </Card>
     </Form>

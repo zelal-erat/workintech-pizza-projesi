@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import OrderForm from './components/orderForm';
 import OrderConfirmationForm from './components/OrderConfirmation';
@@ -6,44 +7,36 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-
 const App = () => {
-  const [orderData, setOrderData] = useState(null); 
-  const [currentPage, setCurrentPage] = useState('home'); 
+  const [orderData, setOrderData] = useState(null);
 
- 
   const handleOrderSubmit = (data) => {
     setOrderData(data);
-    setCurrentPage('confirmation'); // Sipariş gönderildikten sonra onay sayfasına geçiş
   };
 
-  
   const handleReset = () => {
     setOrderData(null);
-    setCurrentPage('order'); // Yeni sipariş için formu tekrar göster
-  };
-
-  
-  const handleStartOrder = () => {
-    setCurrentPage('order');
   };
 
   return (
-    <div className="App">
-      
-      <Header />
-      {currentPage === 'home' && (
-        <HomePage onStartOrder={handleStartOrder} />
-      )}
-      {currentPage === 'order' && (
-        <OrderForm onOrderSubmit={handleOrderSubmit} />
-      )}
-      {currentPage === 'confirmation' && (
-        <OrderConfirmationForm orderData={orderData} onReset={handleReset} />
-      )}
-      <Footer/>
-    </div>
-
+    <Router>
+      <div className="App">
+        <Header />
+        <Switch>
+          {/* HomePage, OrderForm ve OrderConfirmationForm arasındaki yönlendirme işlemleri */}
+          <Route path="/" exact>
+            <HomePage onStartOrder={() => window.location.href = "/order"} />
+          </Route>
+          <Route path="/order">
+            <OrderForm onOrderSubmit={handleOrderSubmit} />
+          </Route>
+          <Route path="/confirmation">
+            <OrderConfirmationForm orderData={orderData} onReset={handleReset} />
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

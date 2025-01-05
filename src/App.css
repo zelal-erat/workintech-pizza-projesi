@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 .logo {
-  height: 6em;
+  height: 5rem;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -23,11 +23,14 @@
 .homepage h1{
   font-family: 'satisfy';
   color: #FDC913;
+  
+  font-size: 23px;
 }
 .homepage h2{
-  width: 300px;
+  width: 350px;
   text-align: center;
   font-weight: 100;
+  font-size: 2.8rem;
 }
 .homepage button{
   background-color: #FDC913;
@@ -47,6 +50,7 @@
 .confirmation h1{
   font-family: 'satisfy';
   color: yellow;
+  font-size: 20px;
 }
 
 .confirmation h2 {
@@ -56,25 +60,29 @@
   color: white;
   text-align: center;
 }
-.siparis{
-
-  width:80%;
- 
-
+.siparis {
+  width: 200px;
+  display: flex
+;
+  margin-top: 10px;
+  flex-direction: column;
 }
 .confirmation button{
   border-radius: 1rem;
 }
 
-.toplam-özet{
+.toplam-özet {
   border: 1px solid white;
-  width: 70%;
-  height: 40%;
+  width: 268px;
+  height: 20%;
+  display: flex
+;
   padding: 20px;
-  text-align: center;
   border-radius: 0.3rem;
-  margin-bottom: 10px;
-  text-align: start;
+  margin-bottom:20px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .tebrik{
   width: 30%;
@@ -91,11 +99,13 @@
   background-color: #CE2829;
   font-weight: 100;
   padding: 1rem;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   padding-left: 6rem;
   font-family: 'Barlow';
- 
-
+}
+.toplam-özet span{
+  font-size: 2rem;
+  color: #FDC913;
 }
 .ozet p{
 color: white;
@@ -105,12 +115,16 @@ font-family: 'Barlow';
 
 
   @media (max-width: 420px) {
+    .header{
+      width: 900px;
+
+    }
   .homepage {
 
-    width: 800px;
-     
+    width: 900px;
   
   }
+  
   .homepage h2{
     font-size: 2rem;
         width: 400px;
@@ -125,12 +139,20 @@ font-family: 'Barlow';
   }
 
   .confirmation{
-        padding: 600px 400px;
+        padding: 600px 450px;
   }
   .tebrik{
     width: 100vh;
 
   }
+  .order-note textarea {
+    width: 660px;
+  }
+  .name-input input {
+    width: 660px;
+  }
+  
+
   .ozet{
     text-align: start;
     width: 400px;
@@ -141,9 +163,7 @@ font-family: 'Barlow';
   color: white;
   font-size: 1rem;
   }
-  .footer{
-    width: 800px;
-  }
+  
   .deails{
     margin-left: 2rem;
     width: 700px;
@@ -153,26 +173,18 @@ font-family: 'Barlow';
     font-size: 0.8rem;
   }
   .kart-container {
-    width: 760px;
+    width: 900px;
   }
   .top-rated-container{
-    width: 760px;
+    width: 900px;
   }
   .card-container{
-    width: 760px;
+    width: 900px;
   }
   .order-form{
     width: 800px;
   }
-  .footer{
-    padding-left: 3rem;
-  }
-  .instagram{
-    padding-left: 3rem;
-    margin-top: 1rem; 
-}
-.instagram img{
-  padding: 5px;
-}
+  
+  
 
   }

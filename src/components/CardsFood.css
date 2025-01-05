@@ -1,21 +1,21 @@
 .card-container {
-    display: flex;  /* Kartları yatayda sıralamak için flexbox kullanıyoruz */
-    justify-content: center;  /* Kartları ortalamak için */
-    align-items: center;  /* Kartları dikeyde ortalamak için */
-    gap: 20px;  /* Kartlar arasına boşluk eklemek için */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;  
+    gap: 20px;  
     padding: 20px;
     background-color: #FAF7F2;
   }
   
   .terminal, .pizza, .burger {
     display: flex;
-    flex-direction: column;  /* Görsel ve yazıyı dikeyde sıralamak için */
+    flex-direction: column;  
     justify-content: center;
     align-items: center;
     width: 190px;
-    height: 200px;  /* Kartın genişliğini belirledik */
+    height: 200px; 
     text-align: center;
-    margin: 10px;  /* Kartlar arasına boşluk eklemek için */
+    margin: 10px;  
     background-color: white;
     border-radius: 1rem;
     
@@ -23,18 +23,18 @@
   
   
   .terminal img, .pizza img, .burger img {
-    width: 100px;  /* Görsellerin boyutunu küçültüyoruz */
-    height: auto;  /* Görsellerin orantılı olarak küçülmesini sağlıyoruz */
+    width: 100px;  
+    height: auto;  
   }
   
   .terminal p, .pizza p, .burger p {
-    font-size: 14px;  /* Yazı boyutunu küçültüyoruz */
-    margin-top: 10px;  /* Yazı ile görsel arasındaki boşluğu ekliyoruz */
+    font-size: 14px; 
+    margin-top: 10px;  
   }
   .food-details {
     display: flex;
-    justify-content: space-between; /* Distribute the elements evenly */
-    margin-top: 10px; /* Add spacing between the image/description and details */
+    justify-content: space-between; 
+    margin-top: 10px; 
 }
 
 .food-details span {
@@ -45,6 +45,6 @@
 }
 
 .food-price {
-    font-weight: bold; /* Optional, make price stand out */
+    font-weight: bold; 
 }
 

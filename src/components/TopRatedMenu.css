@@ -36,25 +36,25 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    color: #333;  /* Yazı rengi siyah */
-    border: 1px solid transparent; /* Sınır siyah */
+    color: #333;  
+    border: 1px solid transparent; 
    border-radius: 20px;
-    padding: 10px 15px;  /* Butonun boyutunu küçülttük */
+    padding: 10px 15px;  
     font-size: 14px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Geçiş efektleri */
-    width: 80px;  /* Buton genişliğini küçülttük */
-    height: 80px; /* Buton yüksekliğini küçülttük */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    width: 80px; 
+    height: 80px; 
     text-align: center;
   }
   
   .top-rated-button:hover {
-    background-color: #333;  /* Üzerine gelince arka plan siyah */
-    color: white;  /* Yazı rengi beyaz */
-    border-color: white; /* Sınır beyaz olacak */
+    background-color: #333;  
+    color: white; 
+    border-color: white; 
   }
   
-  /* Buton içindeki açıklamalar */
+
   .top-rated-button-description {
     display: flex;
     flex-direction: column;
@@ -62,13 +62,13 @@
   }
   
   .top-rated-button img {
-    width: 30px;   /* İkon boyutlarını küçülttük */
+    width: 30px;  
     height: 30px;
     margin-bottom: 5px;
   }
   
   .top-rated-button p {
     margin: 0;
-    font-size: 12px; /* Yazı boyutunu küçülttük */
+    font-size: 12px;
   }
   

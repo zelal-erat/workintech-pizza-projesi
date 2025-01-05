@@ -5,7 +5,9 @@ import CardsFood from './CardsFood';
 import FoodDeails from './FoodDeails';
 import Kart from './Kart';
 import TopRatedMenus from './TopRatedMenu';
+
 const HomePage = ({ onStartOrder }) => {
+  
   return (
     <div>
     <div className="homepage">

@@ -1,38 +1,49 @@
+import './CardsFood.css';
 
-import './CardsFood.css'
-export default function CardsFood(){
-    return(
-            <section className="card-container">
-                <div className="terminal">
-                    <img src="./images/iteration-2-images/pictures/food-1.png" alt="food-1" />
-                <p>Terminal Pizza</p>
-                <div className="food-details">
-          <span className="food-rating"> 4.1 ★</span>
-          <span className="food-comments">(85)</span>
-          <span className="food-price">60₺</span>
+const foodItems = [
+  {
+    id: 1,
+    name: "Terminal Pizza",
+    imgSrc: "./images/iteration-2-images/pictures/food-1.png",
+    rating: 4.1,
+    comments: 85,
+    price: "60₺",
+    className: "terminal"
+  },
+  {
+    id: 2,
+    name: "Position Absolute Acı Pizza",
+    imgSrc: "./images/iteration-2-images/pictures/food-2.png",
+    rating: 4.9,
+    comments: 200,
+    price: "60₺",
+    className: "pizza"
+  },
+  {
+    id: 3,
+    name: "useEffect Tavuklu Burger",
+    imgSrc: "./images/iteration-2-images/pictures/food-3.png",
+    rating: 4.5,
+    comments: 120,
+    price: "60₺",
+    className: "burger"
+  }
+];
+
+export default function CardsFood() {
+  return (
+    <section className="card-container">
+      {foodItems.map((item) => (
+        <div key={item.id} className={item.className}>
+          <img src={item.imgSrc} alt={`food-${item.id}`} />
+          <p>{item.name}</p>
+          <div className="food-details">
+            <span className="food-rating">{item.rating} ★</span>
+            <span className="food-comments">({item.comments})</span>
+            <span className="food-price">{item.price}</span>
+          </div>
         </div>
-                
-                </div>
-            
-                <div className="pizza">
-                    <img src="./images/iteration-2-images/pictures/food-2.png" alt="food-2" />
-                <p>Position Absolute Acı Pizza</p>
-                <div className="food-details">
-          <span className="food-rating">4.9 ★</span>
-          <span className="food-comments"> (200)</span>
-          <span className="food-price">60₺</span>
-        </div>
-                </div>
-            
-                <div className="burger">
-                    <img src="./images/iteration-2-images/pictures/food-3.png" alt="food-3" />
-                <p>useEffect Tavuklu Burger</p>
-                <div className="food-details">
-          <span className="food-rating"> 4.5 ★</span>
-          <span className="food-comments">(120)</span>
-          <span className="food-price">60₺</span>
-        </div>
-                </div>
-            </section>
-    )
+      ))}
+    </section>
+  );
 }

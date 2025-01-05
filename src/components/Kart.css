@@ -27,7 +27,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1; /* Resmi arka planda tutar */
+  z-index: -1; 
 }
 
 .kart-container h3, .kart-container p {
@@ -39,7 +39,7 @@
   font-size: 18px;
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
-  z-index: 2; /* Yazıların en üstte olması için */
+  z-index: 2; 
 }
 .kart-container .özel h3{
   left: 25%;
@@ -48,7 +48,7 @@
 }
 
 .kart-container h3 {
-  top: 12%; /* Başlık için üstten konumlandırma */
+  top: 12%; 
   text-align: start;
 }
 
@@ -61,20 +61,20 @@
 }
 
 .kart-container .özel {
-  z-index: 3; /* Özel kartın üstte olmasını sağla */
+  z-index: 3;
 }
 
 .kart-container .menü-burger {
-  z-index: 2; /* Menüler ikinci sırada olacak */
-  position: relative; /* Konumlandırmayı netleştirmek için */
+  z-index: 2; 
+  position: relative; 
 }
 
 .kart-container .hizli {
-  z-index: 1; /* Hızlı kartın alt sırada olması için */
-  position: relative; /* Konumlandırmayı netleştirmek için */
+  z-index: 1; 
+  position: relative; 
 }
 
-/* Butonların konumlandırılması */
+
 .kart-container .kart-button {
   position: absolute;
   bottom: 18%;
@@ -87,7 +87,7 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 15px;
-  z-index: 4; /* Butonların üstte görünmesini sağla */
+  z-index: 4; 
   text-align: center;
   font-size: 13px;
   font-family: 'Barlow';
