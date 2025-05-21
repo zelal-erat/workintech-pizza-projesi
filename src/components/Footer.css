@@ -1,0 +1,106 @@
+.footer {
+    background-color: black;
+    display: flex;
+    font-family: "Barlow";
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: white;
+    margin-top: auto;
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+.başlik-logo img {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.footer-contact p img {
+    margin-right: 0.5rem;
+    width: 20px;
+}
+
+.hot-menu h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+.hot-menu {
+    padding: 3rem;
+    margin-top: 3rem;
+    margin-right: 5rem;
+    margin-left: 5rem;
+}
+.hot-menu p {
+    width: 200%;
+}
+
+.instagram {
+    padding-left: 3rem;
+    margin-top: 6rem;
+}
+.instagram img {
+    padding: 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.instagram > h2 {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+
+@media (max-width: 420px) {
+    
+    .footer {
+        flex-direction: row;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        width: 900px;
+    }
+
+    .başlik-logo img {
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+   
+    .footer-contact p {
+        font-size: 0.8rem;
+    }
+    .footer-contact p img {
+        width: 16px;
+        margin-bottom: 3rem;
+    }
+
+    
+    .hot-menu {
+        padding: 2rem;
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+    .hot-menu h2 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    .hot-menu p {
+        width: 100%; 
+    }
+
+   
+    .instagram {
+        padding-left: 1.5rem;
+        margin-top: 3rem;
+    }
+    .instagram img {
+        width: 90px;
+        height: 90px;
+    }
+    .instagram h2 {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+}

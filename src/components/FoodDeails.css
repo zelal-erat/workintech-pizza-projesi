@@ -1,0 +1,24 @@
+
+.deails{
+    display: flex;  
+    justify-content: center;  
+    align-items: center; 
+    gap: 20px;  
+    padding: 0 20px;  
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .deails p {
+    display: flex;  
+    align-items: center; 
+    font-size: 14px;  
+    margin: 0;  
+  }
+  
+  .deails img {
+    width: 30px;  
+    height: auto;  
+    margin-right: 5px;  
+  }
+  

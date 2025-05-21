@@ -1,42 +1,190 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
 
 .logo {
-  height: 6em;
+  height: 5rem;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  display: flex;
+  justify-content: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.homepage{
+  background-image: url('./images/iteration-1-images/home-banner.png');
+  height: 75vh;
+    background-size: cover;
+    background-position: center ;
+    display: flex;
+    flex-direction: column;
+   align-items: center;
+  color:white;
+  
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.homepage h1{
+  font-family: 'satisfy';
+  color: #FDC913;
+  
+  font-size: 23px;
+}
+.homepage h2{
+  width: 350px;
+  text-align: center;
+  font-weight: 100;
+  font-size: 2.8rem;
+}
+.homepage button{
+  background-color: #FDC913;
+  color: black;
+  border-radius: 5em;
+}
+.confirmation{
+  background-color: #CE2829;
+  height: 82vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
+  
+}
+.confirmation h1{
+  font-family: 'satisfy';
+  color: yellow;
+  font-size: 20px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.confirmation h2 {
+  display: block;
+  font-size: 3.5rem;
+  margin: 8px 0;
+  color: white;
+  text-align: center;
+}
+.siparis {
+  width: 200px;
+  display: flex
+;
+  margin-top: 10px;
+  flex-direction: column;
+}
+.confirmation button{
+  border-radius: 1rem;
+}
+
+.toplam-özet {
+  border: 1px solid white;
+  width: 268px;
+  height: 20%;
+  display: flex
+;
+  padding: 20px;
+  border-radius: 0.3rem;
+  margin-bottom:20px;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.tebrik{
+  width: 30%;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+.tebrik h2{
+  font-family: 'Barlow';
+  font-size: 50px;
+}
+.ozet{
+  text-align: start;
+  margin-top: 15px;
+  background-color: #CE2829;
+  font-weight: 100;
+  padding: 1rem;
+  margin-bottom: 50px;
+  padding-left: 6rem;
+  font-family: 'Barlow';
+}
+.toplam-özet span{
+  font-size: 2rem;
+  color: #FDC913;
+}
+.ozet p{
+color: white;
+font-size: 1rem;
+font-family: 'Barlow';
+}
+
+
+  @media (max-width: 420px) {
+    .header{
+      width: 900px;
+
+    }
+  .homepage {
+
+    width: 900px;
+  
   }
-  to {
-    transform: rotate(360deg);
+  
+  .homepage h2{
+    font-size: 2rem;
+        width: 400px;
+       
+        text-align: center;
+        font-weight: 100;
+
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .homepage button {
+   
+    font-size: 1rem; /* Buton yazı boyutunu küçültüyorum */
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .confirmation{
+        padding: 600px 450px;
+  }
+  .tebrik{
+    width: 100vh;
 
-.read-the-docs {
-  color: #888;
-}
+  }
+  .order-note textarea {
+    width: 660px;
+  }
+  .name-input input {
+    width: 660px;
+  }
+  
+
+  .ozet{
+    text-align: start;
+    width: 400px;
+    margin-top:20px;
+  
+  }
+  .ozet p{
+  color: white;
+  font-size: 1rem;
+  }
+  
+  .deails{
+    margin-left: 2rem;
+    width: 700px;
+
+  }
+  .kart-container h3{
+    font-size: 0.8rem;
+  }
+  .kart-container {
+    width: 900px;
+  }
+  .top-rated-container{
+    width: 900px;
+  }
+  .card-container{
+    width: 900px;
+  }
+  .order-form{
+    width: 800px;
+  }
+  
+  
+
+  }

@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+.top-rated-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #FAF7F2;
+  }
+  
+  #emphasis {
+    font-size: 25px;
+    font-weight: bold;
+    color: #FF5722;
+    font-family: 'Satisfy';
+    margin-bottom: 10px;
+  }
+  
+  .top-rated-main {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .top-rated-buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  /* Buton Stili */
+  .top-rated-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: #333;  
+    border: 1px solid transparent; 
+   border-radius: 20px;
+    padding: 10px 15px;  
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
+    width: 80px; 
+    height: 80px; 
+    text-align: center;
+  }
+  
+  .top-rated-button:hover {
+    background-color: #333;  
+    color: white; 
+    border-color: white; 
+  }
+  
+
+  .top-rated-button-description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .top-rated-button img {
+    width: 30px;  
+    height: 30px;
+    margin-bottom: 5px;
+  }
+  
+  .top-rated-button p {
+    margin: 0;
+    font-size: 12px;
+  }
+  
